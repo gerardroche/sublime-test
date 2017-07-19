@@ -1,0 +1,6 @@
+[
+    { "caption": ":TestNearest", "command": "test_nearest" },
+    { "caption": ":TestFile", "command": "test_file" },
+    { "caption": ":TestSuite", "command": "test_suite" },
+    { "caption": ":TestLast", "command": "test_last" }
+]
