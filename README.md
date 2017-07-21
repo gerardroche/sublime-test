@@ -1,6 +1,6 @@
 # sublime-test
 
-[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Stable Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=stable)](https://github.com/gerardroche/sublime-test/tags)
+[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Stable Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=stable)](https://github.com/gerardroche/sublime-test/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-test.svg?style=flat-square)](https://github.com/gerardroche/sublime-test/stargazers) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
 
 A wrapper for running tests on different granularities.
 
@@ -8,9 +8,9 @@ A wrapper for running tests on different granularities.
 
 Currently the following testing plugins are supported:
 
-Language | Framework | Plugin
--------- | --------- | ------
-PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-phpunit)
+Language | Framework | Package
+-------- | --------- | -------
+PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-test)
 Python | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
 
 ## INSTALLATION
