@@ -1,6 +1,11 @@
 [
-    { "caption": ":TestNearest", "command": "test_nearest" },
+    { "caption": ":TestCancel", "command": "test_cancel" },
+    { "caption": ":TestCoverage", "command": "test_coverage" },
     { "caption": ":TestFile", "command": "test_file" },
+    { "caption": ":TestLast", "command": "test_last" },
+    { "caption": ":TestNearest", "command": "test_nearest" },
+    { "caption": ":TestResults", "command": "test_results" },
     { "caption": ":TestSuite", "command": "test_suite" },
-    { "caption": ":TestLast", "command": "test_last" }
+    { "caption": ":TestSwitch", "command": "test_switch" },
+    { "caption": ":TestVisit", "command": "test_visit" },
 ]
