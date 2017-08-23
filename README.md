@@ -1,17 +1,17 @@
-# sublime-test
+# Test
 
-[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Stable Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=stable)](https://github.com/gerardroche/sublime-test/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-test.svg?style=flat-square)](https://github.com/gerardroche/sublime-test/stargazers) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
+Leverage the power of Sublime Text testing plugins.
 
-A wrapper for running tests on different granularities.
+[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Stable Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=stable)](https://github.com/gerardroche/sublime-test/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-test.svg?style=flat-square)](https://github.com/gerardroche/sublime-test/stargazers) [![Downloads](https://img.shields.io/packagecontrol/dt/Test.svg?style=flat-square)](https://packagecontrol.io/packages/Test) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
 
 ![Screenshot](screenshot.png)
 
-Currently the following testing plugins are supported:
+The following testing plugins are currently supported:
 
 Language | Framework | Package
 -------- | --------- | -------
+ | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime_color_scheme_unit)
 PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-test)
-Mixed | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime_color_scheme_unit)
 Python | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
 
 To add support for your testing tool please open an issue and I'll do my best to help.
@@ -21,10 +21,10 @@ To add support for your testing tool please open an issue and I'll do my best to
 ### Manual installation
 
 1. Close Sublime Text.
-2. Download or clone this repository to a directory named **`test`** in the Sublime Text Packages directory for your platform:
-    * Linux: `git clone https://github.com/gerardroche/sublime-test.git ~/.config/sublime-text-3/Packages/test`
-    * OS X: `git clone https://github.com/gerardroche/sublime-test.git ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/test`
-    * Windows: `git clone https://github.com/gerardroche/sublime-test.git %APPDATA%\Sublime/ Text/ 3/Packages/test`
+2. Download or clone this repository to a directory named **`Test`** in the Sublime Text Packages directory for your platform:
+    * Linux: `git clone https://github.com/gerardroche/sublime-test.git ~/.config/sublime-text-3/Packages/Test`
+    * OS X: `git clone https://github.com/gerardroche/sublime-test.git ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Test`
+    * Windows: `git clone https://github.com/gerardroche/sublime-test.git %APPDATA%\Sublime/ Text/ 3/Packages/Test`
 3. Done!
 
 ## USAGE
@@ -46,14 +46,14 @@ Add your preferred key bindings:
 
 ```json
 [
-    { "keys": ["super+a"], "command": "test_suite" },
-    { "keys": ["super+f"], "command": "test_file" },
-    { "keys": ["super+n"], "command": "test_nearest" },
-    { "keys": ["super+l"], "command": "test_last" },
-    { "keys": ["super+v"], "command": "test_visit" },
-    { "keys": ["super+s"], "command": "test_switch" },
-    { "keys": ["super+c"], "command": "test_cancel" },
-    { "keys": ["super+r"], "command": "test_results" },
+    { "keys": ["ctrl+shift+a"], "command": "test_suite" },
+    { "keys": ["ctrl+shift+f"], "command": "test_file" },
+    { "keys": ["ctrl+shift+n"], "command": "test_nearest" },
+    { "keys": ["ctrl+shift+l"], "command": "test_last" },
+    { "keys": ["ctrl+shift+v"], "command": "test_visit" },
+    { "keys": ["ctrl+shift+s"], "command": "test_switch" },
+    { "keys": ["ctrl+shift+c"], "command": "test_cancel" },
+    { "keys": ["ctrl+shift+r"], "command": "test_results" },
 ]
 ```
 
@@ -63,10 +63,6 @@ Key | Description
 --- | -----------
 `F4` | Jump to Next Failure
 `Shift+F4` | Jump to Previous Failure
-
-## CREDITS
-
-Inspired by [vim-test](https://github.com/janko-m/vim-test).
 
 ## LICENSE
 
