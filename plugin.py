@@ -7,48 +7,42 @@ from sublime_plugin import WindowCommand
 class TestCancelCommand(WindowCommand):
 
     def run(self):
-        self.window.run_command(_get_run_command('cancel', self.window))
-
-
-class TestCoverageCommand(WindowCommand):
-
-    def run(self):
-        self.window.run_command(_get_run_command('coverage', self.window))
+        _run_command(self.window, 'cancel')
 
 
 class TestFileCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('file', self.window))
+        _run_command(self.window, 'file')
 
 
 class TestLastCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('last', self.window))
+        _run_command(self.window, 'last')
 
 
 class TestNearestCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('nearest', self.window))
+        _run_command(self.window, 'nearest')
 
 
 class TestResultsCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('results', self.window))
+        _run_command(self.window, 'results')
 
 
 class TestSuiteCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('suite', self.window))
+        _run_command(self.window, 'suite')
 
 
 class TestSwitchCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('switch', self.window))
+        _run_command(self.window, 'switch')
 
 
 class TestVisitCommand(WindowCommand):
     def run(self):
-        self.window.run_command(_get_run_command('visit', self.window))
+        _run_command(self.window, 'visit')
 
 
 _COMMANDS = {
@@ -101,8 +95,10 @@ def _get_context(window):
     return 'phpunit'
 
 
-def _get_run_command(name, window):
+def _run_command(window, name):
     try:
-        return _COMMANDS[name][_get_context(window)]
+        command = _COMMANDS[name][_get_context(window)]
+        print('Test: run command \'{}\''.format(command))
+        window.run_command(command)
     except KeyError:
-        return 'test_noop'
+        print('Test: test not found')
