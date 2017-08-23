@@ -55,9 +55,6 @@ _COMMANDS = {
     'cancel': {
         'phpunit': 'phpunit_test_cancel',
     },
-    'coverage': {
-        'phpunit': 'phpunit_test_coverage',
-    },
     'file': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
         'phpunit': 'phpunit_test_file',

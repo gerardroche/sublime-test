@@ -39,7 +39,6 @@ Command Palette | Command | Description
 `:TestSwitch` | `test_switch` | Splits the window and puts nearest test case and class under test side by side.
 `:TestResults` | `test_results` | Show the test results panel.
 `:TestCancel` | `test_cancel` | Cancels current test run.
-`:TestCoverage` | `test_coverage` | Open code coverage in browser.
 
 Add your preferred key bindings:
 

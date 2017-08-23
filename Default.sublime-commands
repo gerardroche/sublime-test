@@ -1,6 +1,5 @@
 [
     { "caption": ":TestCancel", "command": "test_cancel" },
-    { "caption": ":TestCoverage", "command": "test_coverage" },
     { "caption": ":TestFile", "command": "test_file" },
     { "caption": ":TestLast", "command": "test_last" },
     { "caption": ":TestNearest", "command": "test_nearest" },
