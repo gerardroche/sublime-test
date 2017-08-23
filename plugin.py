@@ -69,7 +69,7 @@ _COMMANDS = {
     'suite': {
         'color_scheme_unit': 'color_scheme_unit_test_suite',
         'phpunit': 'phpunit_test_suite',
-        'sublimetext': 'unit_testing_current_project',
+        'sublimetext': 'unit_testing_current_package',
     },
     'switch': {
         'phpunit': 'phpunit_test_switch',
