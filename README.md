@@ -10,7 +10,7 @@ The following testing plugins are currently supported:
 
 Language | Framework | Package
 -------- | --------- | -------
- | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime_color_scheme_unit)
+ | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime-color-scheme-unit)
 PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-test)
 Python | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
 
