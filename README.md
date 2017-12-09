@@ -6,7 +6,23 @@ Leverage the power of Sublime Text testing plugins.
 
 ![Screenshot](screenshot.png)
 
-The following testing plugins are currently supported:
+## INSTALLATION
+
+### Package Control installation
+
+The preferred method of installation is [Package Control](https://packagecontrol.io/browse/authors/gerardroche).
+
+### Manual installation
+
+Close Sublime Text, then download or clone this repository to a directory named `Test` in the Sublime Text Packages directory for your platform:
+
+* Linux: `git clone https://github.com/gerardroche/sublime-test.git ~/.config/sublime-text-3/Packages/Test`
+* OSX: `git clone https://github.com/gerardroche/sublime-test.git ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Test`
+* Windows: `git clone https://github.com/gerardroche/sublime-test.git %APPDATA%\Sublime/ Text/ 3/Packages/Test`
+
+## USAGE
+
+### Supported plugins
 
 Language | Framework | Package
 -------- | --------- | -------
@@ -14,20 +30,9 @@ Language | Framework | Package
 PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-test)
 Python | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
 
-To add support for your testing tool please open an issue and I'll do my best to help.
+Please open an issue to add support for your testing plugin.
 
-## INSTALLATION
-
-### Manual installation
-
-1. Close Sublime Text.
-2. Download or clone this repository to a directory named **`Test`** in the Sublime Text Packages directory for your platform:
-    * Linux: `git clone https://github.com/gerardroche/sublime-test.git ~/.config/sublime-text-3/Packages/Test`
-    * OS X: `git clone https://github.com/gerardroche/sublime-test.git ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Test`
-    * Windows: `git clone https://github.com/gerardroche/sublime-test.git %APPDATA%\Sublime/ Text/ 3/Packages/Test`
-3. Done!
-
-## USAGE
+### Commands
 
 Command Palette | Command | Description
 --------------- | ------- | -----------
@@ -40,9 +45,9 @@ Command Palette | Command | Description
 `:TestResults` | `test_results` | Show the test results panel.
 `:TestCancel` | `test_cancel` | Cancels current test run.
 
-Add your preferred key bindings:
+### Key Bindings
 
-`Menu > Preferences > Key Bindings`
+Add your preferred key bindings: `Menu > Preferences > Key Bindings`
 
 ```json
 [
@@ -56,8 +61,6 @@ Add your preferred key bindings:
     { "keys": ["ctrl+shift+r"], "command": "test_results" },
 ]
 ```
-
-Key bindings that often provided by packages by default:
 
 Key | Description
 --- | -----------
