@@ -51,7 +51,7 @@ _COMMANDS = {
     'file': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
         'phpunit': 'phpunit_test_file',
-        'sublimetext': 'unit_testing_current_file',
+        'sublime_text': 'unit_testing_current_file',
     },
     'last': {
         'phpunit': 'phpunit_test_suite',
@@ -59,7 +59,7 @@ _COMMANDS = {
     'nearest': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
         'phpunit': 'phpunit_test_nearest',
-        'sublimetext': 'unit_testing_current_file',
+        'sublime_text': 'unit_testing_current_file',
     },
     'results': {
         'color_scheme_unit': 'color_scheme_unit_test_results',
@@ -68,7 +68,7 @@ _COMMANDS = {
     'suite': {
         'color_scheme_unit': 'color_scheme_unit_test_suite',
         'phpunit': 'phpunit_test_suite',
-        'sublimetext': 'unit_testing_current_package',
+        'sublime_text': 'unit_testing_current_package',
     },
     'switch': {
         'phpunit': 'phpunit_test_switch',
@@ -79,13 +79,22 @@ _COMMANDS = {
 }
 
 
-_EXTENSIONS = {
-    '.tmTheme': 'color_scheme_unit'
+_NAME = {
+    'unittesting.json': 'sublime_text',
+    'phpunit.xml': 'phpunit',
+    'phpunit.xml.dist': 'phpunit',
+    'composer.json': 'phpunit',
+}
+
+_NAME_STARTS = {
+    'color_scheme_test': 'color_scheme_unit',
 }
 
 
-_NAME_STARTS = {
-    'color_scheme_test': 'color_scheme_unit'
+_EXTENSIONS = {
+    '.tmTheme': 'color_scheme_unit',
+    '.php': 'phpunit',
+    '.sublime-project': 'sublime_text',
 }
 
 
@@ -94,8 +103,17 @@ def _get_context(window):
     if view:
         file_name = view.file_name()
         if file_name:
+
+            # e.g. /path/to/name.ext
+            # f_path = /path/to
+            # f_base = name.ext
+            # f_name = name
+            # f_ext = .ext
             f_path, f_base = os.path.split(file_name)
             f_name, f_ext = os.path.splitext(f_base)
+
+            if f_base in _NAME:
+                return _NAME[f_base]
 
             for k, v in _NAME_STARTS.items():
                 if f_name.startswith(k):
@@ -105,9 +123,9 @@ def _get_context(window):
                 return _EXTENSIONS[f_ext]
 
         if view.match_selector(view.sel()[0].begin(), 'source.python'):
-            return 'sublimetext'
+            return 'sublime_text'
 
-    return 'phpunit'
+    return None
 
 
 def _run_command(window, name):
@@ -118,9 +136,13 @@ def _run_command(window, name):
             print('Test: view=[id={},file={}]'.format(view.id(), view.file_name()))
 
         context = _get_context(window)
-
         if is_debug:
             print('Test: in \'{}\' context'.format(context))
+
+        if not context:
+            if is_debug:
+                print('Test: using default context \'phpunit\'')
+            context = 'phpunit'
 
         command = _COMMANDS[name][context]
 
