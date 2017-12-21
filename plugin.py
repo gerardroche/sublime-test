@@ -1,47 +1,85 @@
 import os
 
-from sublime_plugin import WindowCommand
+from sublime import packages_path
+from sublime import status_message
+import sublime_plugin
 
 
-class TestCancelCommand(WindowCommand):
+class TestCancelCommand(sublime_plugin.WindowCommand):
 
     def run(self):
         _run_command(self.window, 'cancel')
 
 
-class TestFileCommand(WindowCommand):
+class TestFileCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'file')
 
 
-class TestLastCommand(WindowCommand):
+class TestLastCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'last')
 
 
-class TestNearestCommand(WindowCommand):
+class TestNearestCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'nearest')
 
 
-class TestResultsCommand(WindowCommand):
+class TestResultsCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'results')
 
 
-class TestSuiteCommand(WindowCommand):
+class TestSuiteCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'suite')
 
 
-class TestSwitchCommand(WindowCommand):
+class TestSwitchCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'switch')
 
 
-class TestVisitCommand(WindowCommand):
+class TestVisitCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'visit')
+
+
+def _switch_file(window):
+    view = window.active_view()
+    if not view:
+        return status_message('view not found')
+
+    file_name = view.file_name()
+    if not file_name:
+        return status_message('file name not found')
+
+    file_name = os.path.realpath(file_name)
+    for package in os.listdir(packages_path()):
+        p_path = os.path.join(packages_path(), package)
+        if file_name.startswith(p_path):
+            if os.path.isdir(p_path):
+                f_path, f_base = os.path.split(file_name)
+
+                test_file = os.path.join(
+                    f_path.replace(p_path, os.path.join(p_path, 'tests')),
+                    'test_' + f_base)
+
+                if os.path.isfile(test_file):
+                    window.open_file(test_file)
+
+
+# TODO Port this to the UnitTesting plugin
+class UnitTestingTestSwitchCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        _switch_file(self.window)
+
+
+# TODO This command belongs in a Python Testing plugin.
+class PythonTestSwitchCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        _switch_file(self.window)
 
 
 _COMMANDS = {
@@ -72,6 +110,7 @@ _COMMANDS = {
     },
     'switch': {
         'phpunit': 'phpunit_test_switch',
+        'sublime_text': 'unit_testing_test_switch',
     },
     'visit': {
         'phpunit': 'phpunit_test_visit',
