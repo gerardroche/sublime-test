@@ -55,19 +55,43 @@ def _switch_file(window):
     if not file_name:
         return status_message('file name not found')
 
+    _debug_message(window, 'switch from {}'.format(file_name))
+
+    # We need to evaluate the realpath of the file in order to mutate it to and
+    # from test -> file and file -> test.
     file_name = os.path.realpath(file_name)
+    _debug_message(window, 'switch from {} (realpath)'.format(file_name))
+
     for package in os.listdir(packages_path()):
         p_path = os.path.join(packages_path(), package)
         if file_name.startswith(p_path):
             if os.path.isdir(p_path):
                 f_path, f_base = os.path.split(file_name)
 
-                test_file = os.path.join(
-                    f_path.replace(p_path, os.path.join(p_path, 'tests')),
-                    'test_' + f_base)
+                if f_base.startswith('test_'):
+                    # Switch from test -> file
+                    switch_to_file = os.path.join(
+                        f_path.replace(os.path.join(p_path, 'tests'), os.path.join(p_path)),
+                        f_base[5:])
+                else:
+                    # Switch from file -> test
+                    switch_to_file = os.path.join(
+                        f_path.replace(p_path, os.path.join(p_path, 'tests')),
+                        'test_' + f_base)
 
-                if os.path.isfile(test_file):
-                    window.open_file(test_file)
+                _debug_message(window, 'switch to   {}'.format(switch_to_file))
+
+                # Checks to see if the file we're switching to is already open,
+                # and takes into account symlinks i.e. if we didn't do this then
+                # we would end up opening a second view with the realpath file
+                # rather than opening the symlinked one.
+                for view in window.views():
+                    if view.file_name():
+                        if os.path.realpath(view.file_name()) == switch_to_file:
+                            return window.open_file(view.file_name())
+
+                if os.path.isfile(switch_to_file):
+                    window.open_file(switch_to_file)
 
 
 # TODO Port this to the UnitTesting plugin
@@ -167,26 +191,28 @@ def _get_context(window):
     return None
 
 
+def _debug_message(window, msg):
+    view = window.active_view()
+    if view and view.settings().get('test.debug', False):
+        print('Test:', msg)
+
+
 def _run_command(window, name):
     try:
         view = window.active_view()
-        is_debug = view.settings().get('test.debug') if view else window.settings().get('test.debug')
-        if is_debug:
-            print('Test: view=[id={},file={}]'.format(view.id(), view.file_name()))
+        if view:
+            _debug_message(window, 'view=[id={},file={}]'.format(view.id(), view.file_name()))
 
         context = _get_context(window)
-        if is_debug:
-            print('Test: in \'{}\' context'.format(context))
+        _debug_message(window, 'found \'{}\' context'.format(context))
 
         if not context:
-            if is_debug:
-                print('Test: using default context \'phpunit\'')
+            _debug_message(window, 'using default context \'phpunit\'')
             context = 'phpunit'
 
         command = _COMMANDS[name][context]
 
-        if is_debug:
-            print('Test: run \'{}\' command'.format(command))
+        _debug_message(window, 'found \'{}\' command'.format(command))
 
         window.run_command(command)
     except KeyError:

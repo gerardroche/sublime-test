@@ -26,9 +26,9 @@ Close Sublime Text, then download or clone this repository to a directory named 
 
 Language | Framework | Package
 -------- | --------- | -------
- | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime-color-scheme-unit)
 PHP | PHPUnit | [PHPUnitKit](https://github.com/gerardroche/sublime-phpunit)
-Python | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
+Mixed | Sublime Text | [UnitTesting](https://github.com/randy3k/UnitTesting)
+Mixed | Sublime Text | [ColorSchemeUnit](https://github.com/gerardroche/sublime-color-scheme-unit)
 
 Please open an issue to add support for your testing plugin.
 
