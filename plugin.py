@@ -116,7 +116,8 @@ _COMMANDS = {
         'sublime_text': 'unit_testing_current_file',
     },
     'last': {
-        'phpunit': 'phpunit_test_suite',
+        'phpunit': 'phpunit_test_last',
+        'sublime_text': 'unit_testing_test_last',
     },
     'nearest': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
