@@ -16,6 +16,11 @@ class TestFileCommand(sublime_plugin.WindowCommand):
         _run_command(self.window, 'file')
 
 
+class TestFileWithCoverageCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        _run_command(self.window, 'file_with_coverage')
+
+
 class TestLastCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'last')
@@ -34,6 +39,11 @@ class TestResultsCommand(sublime_plugin.WindowCommand):
 class TestSuiteCommand(sublime_plugin.WindowCommand):
     def run(self):
         _run_command(self.window, 'suite')
+
+
+class TestSuiteWithCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        _run_command(self.window, 'suite_with_coverage')
 
 
 class TestSwitchCommand(sublime_plugin.WindowCommand):
@@ -113,7 +123,11 @@ _COMMANDS = {
     'file': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
         'phpunit': 'phpunit_test_file',
-        'sublime_text': 'unit_testing_current_file',
+        'sublime_text': 'unit_testing_test_file',
+    },
+    'file_with_coverage': {
+        'phpunit': ('phpunit_test_file', {'coverage': True}),
+        'sublime_text': ('unit_testing_test_file', {'coverage': True}),
     },
     'last': {
         'phpunit': 'phpunit_test_last',
@@ -122,7 +136,7 @@ _COMMANDS = {
     'nearest': {
         'color_scheme_unit': 'color_scheme_unit_test_file',
         'phpunit': 'phpunit_test_nearest',
-        'sublime_text': 'unit_testing_current_file',
+        'sublime_text': 'unit_testing_test_nearest',
     },
     'results': {
         'color_scheme_unit': 'color_scheme_unit_test_results',
@@ -131,7 +145,11 @@ _COMMANDS = {
     'suite': {
         'color_scheme_unit': 'color_scheme_unit_test_suite',
         'phpunit': 'phpunit_test_suite',
-        'sublime_text': 'unit_testing_current_package',
+        'sublime_text': 'unit_testing_test_suite',
+    },
+    'suite_with_coverage': {
+        'phpunit': ('phpunit_test_suite', {'coverage': True}),
+        'sublime_text': ('unit_testing_test_suite', {'coverage': True})
     },
     'switch': {
         'phpunit': 'phpunit_test_switch',
@@ -212,9 +230,12 @@ def _run_command(window, name):
             context = 'phpunit'
 
         command = _COMMANDS[name][context]
+        args = []
+        if isinstance(command, tuple):
+            command, args = command
 
-        _debug_message(window, 'found \'{}\' command'.format(command))
+        _debug_message(window, 'found \'{}\' \'{}\' command'.format(command, args))
 
-        window.run_command(command)
+        window.run_command(command, args)
     except KeyError:
         print('Test: test not found')
