@@ -104,12 +104,6 @@ def _switch_file(window):
                     window.open_file(switch_to_file)
 
 
-# TODO Port this to the UnitTesting plugin
-class UnitTestingTestSwitchCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _switch_file(self.window)
-
-
 # TODO This command belongs in a Python Testing plugin.
 class PythonTestSwitchCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -185,12 +179,6 @@ def _get_context(window):
     if view:
         file_name = view.file_name()
         if file_name:
-
-            # e.g. /path/to/name.ext
-            # f_path = /path/to
-            # f_base = name.ext
-            # f_name = name
-            # f_ext = .ext
             f_path, f_base = os.path.split(file_name)
             f_name, f_ext = os.path.splitext(f_base)
 
@@ -217,25 +205,24 @@ def _debug_message(window, msg):
 
 
 def _run_command(window, name):
+    context = _get_context(window)
+    if not context:
+        print('Test: context not known')
+
+        return
+
+    _debug_message(window, 'context: {}'.format(context))
+
     try:
-        view = window.active_view()
-        if view:
-            _debug_message(window, 'view=[id={},file={}]'.format(view.id(), view.file_name()))
+        cmd = _COMMANDS[name][context]
 
-        context = _get_context(window)
-        _debug_message(window, 'found \'{}\' context'.format(context))
+        if isinstance(cmd, tuple):
+            cmd, cmd_args = cmd
+        else:
+            cmd_args = []
 
-        if not context:
-            _debug_message(window, 'using default context \'phpunit\'')
-            context = 'phpunit'
+        _debug_message(window, 'command: {} {}'.format(cmd, cmd_args))
 
-        command = _COMMANDS[name][context]
-        args = []
-        if isinstance(command, tuple):
-            command, args = command
-
-        _debug_message(window, 'found \'{}\' \'{}\' command'.format(command, args))
-
-        window.run_command(command, args)
+        window.run_command(cmd, cmd_args)
     except KeyError:
-        print('Test: test not found')
+        print('Test: command not found')
