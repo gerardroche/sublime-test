@@ -7,53 +7,53 @@ import sublime_plugin
 
 class TestCancelCommand(sublime_plugin.WindowCommand):
 
-    def run(self):
-        _run_command(self.window, 'cancel')
+    def run(self, **kwargs):
+        _run_command(self.window, 'cancel', **kwargs)
 
 
 class TestFileCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'file')
+    def run(self, **kwargs):
+        _run_command(self.window, 'file', **kwargs)
 
 
 class TestFileWithCoverageCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'file_with_coverage')
+    def run(self, **kwargs):
+        _run_command(self.window, 'file_with_coverage', **kwargs)
 
 
 class TestLastCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'last')
+    def run(self, **kwargs):
+        _run_command(self.window, 'last', **kwargs)
 
 
 class TestNearestCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'nearest')
+    def run(self, **kwargs):
+        _run_command(self.window, 'nearest', **kwargs)
 
 
 class TestResultsCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'results')
+    def run(self, **kwargs):
+        _run_command(self.window, 'results', **kwargs)
 
 
 class TestSuiteCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'suite')
+    def run(self, **kwargs):
+        _run_command(self.window, 'suite', **kwargs)
 
 
 class TestSuiteWithCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'suite_with_coverage')
+    def run(self, **kwargs):
+        _run_command(self.window, 'suite_with_coverage', **kwargs)
 
 
 class TestSwitchCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'switch')
+    def run(self, **kwargs):
+        _run_command(self.window, 'switch', **kwargs)
 
 
 class TestVisitCommand(sublime_plugin.WindowCommand):
-    def run(self):
-        _run_command(self.window, 'visit')
+    def run(self, **kwargs):
+        _run_command(self.window, 'visit', **kwargs)
 
 
 def _switch_file(window):
@@ -204,7 +204,7 @@ def _debug_message(window, msg):
         print('Test:', msg)
 
 
-def _run_command(window, name):
+def _run_command(window, name, **kwargs):
     context = _get_context(window)
     if not context:
         print('Test: context not known')
@@ -219,7 +219,9 @@ def _run_command(window, name):
         if isinstance(cmd, tuple):
             cmd, cmd_args = cmd
         else:
-            cmd_args = []
+            cmd_args = {}
+
+        cmd_args.update(kwargs)
 
         _debug_message(window, 'command: {} {}'.format(cmd, cmd_args))
 
