@@ -16,11 +16,6 @@ class TestFileCommand(sublime_plugin.WindowCommand):
         _run_command(self.window, 'file', **kwargs)
 
 
-class TestFileWithCoverageCommand(sublime_plugin.WindowCommand):
-    def run(self, **kwargs):
-        _run_command(self.window, 'file_with_coverage', **kwargs)
-
-
 class TestLastCommand(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         _run_command(self.window, 'last', **kwargs)
@@ -39,11 +34,6 @@ class TestResultsCommand(sublime_plugin.WindowCommand):
 class TestSuiteCommand(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         _run_command(self.window, 'suite', **kwargs)
-
-
-class TestSuiteWithCommand(sublime_plugin.WindowCommand):
-    def run(self, **kwargs):
-        _run_command(self.window, 'suite_with_coverage', **kwargs)
 
 
 class TestSwitchCommand(sublime_plugin.WindowCommand):
@@ -65,12 +55,12 @@ def _switch_file(window):
     if not file_name:
         return status_message('file name not found')
 
-    _debug_message(window, 'switch from {}'.format(file_name))
+    _log_debug(window, 'switch from {}'.format(file_name))
 
     # We need to evaluate the realpath of the file in order to mutate it to and
     # from test -> file and file -> test.
     file_name = os.path.realpath(file_name)
-    _debug_message(window, 'switch from {} (realpath)'.format(file_name))
+    _log_debug(window, 'switch from {} (realpath)'.format(file_name))
 
     for package in os.listdir(packages_path()):
         p_path = os.path.join(packages_path(), package)
@@ -89,7 +79,7 @@ def _switch_file(window):
                         f_path.replace(p_path, os.path.join(p_path, 'tests')),
                         'test_' + f_base)
 
-                _debug_message(window, 'switch to   {}'.format(switch_to_file))
+                _log_debug(window, 'switch to   {}'.format(switch_to_file))
 
                 # Checks to see if the file we're switching to is already open,
                 # and takes into account symlinks i.e. if we didn't do this then
@@ -110,67 +100,25 @@ class PythonTestSwitchCommand(sublime_plugin.WindowCommand):
         _switch_file(self.window)
 
 
-_COMMANDS = {
-    'cancel': {
-        'phpunit': 'phpunit_test_cancel',
-    },
-    'file': {
-        'color_scheme_unit': 'color_scheme_unit_test_file',
-        'phpunit': 'phpunit_test_file',
-        'sublime_text': 'unit_testing_test_file',
-    },
-    'file_with_coverage': {
-        'phpunit': ('phpunit_test_file', {'coverage': True}),
-        'sublime_text': ('unit_testing_test_file', {'coverage': True}),
-    },
-    'last': {
-        'phpunit': 'phpunit_test_last',
-        'sublime_text': 'unit_testing_test_last',
-    },
-    'nearest': {
-        'color_scheme_unit': 'color_scheme_unit_test_file',
-        'phpunit': 'phpunit_test_nearest',
-        'sublime_text': 'unit_testing_test_nearest',
-    },
-    'results': {
-        'color_scheme_unit': 'color_scheme_unit_test_results',
-        'phpunit': 'phpunit_test_results',
-    },
-    'suite': {
-        'color_scheme_unit': 'color_scheme_unit_test_suite',
-        'phpunit': 'phpunit_test_suite',
-        'sublime_text': 'unit_testing_test_suite',
-    },
-    'suite_with_coverage': {
-        'phpunit': ('phpunit_test_suite', {'coverage': True}),
-        'sublime_text': ('unit_testing_test_suite', {'coverage': True})
-    },
-    'switch': {
-        'phpunit': 'phpunit_test_switch',
-        'sublime_text': 'unit_testing_test_switch',
-    },
-    'visit': {
-        'phpunit': 'phpunit_test_visit',
-    },
-}
+_DEFINITIONS = {}  # type: dict
 
 
-_NAME = {
-    'unittesting.json': 'sublime_text',
+_CONFIG_FILE_NAME_CONTEXTS = {
+    'unittesting.json': 'unit_testing',
     'phpunit.xml': 'phpunit',
     'phpunit.xml.dist': 'phpunit',
     'composer.json': 'phpunit',
 }
 
-_NAME_STARTS = {
+_FILE_NAME_STARTS_WITH_CONTEXTS = {
     'color_scheme_test': 'color_scheme_unit',
 }
 
 
-_EXTENSIONS = {
+_FILE_NAME_EXTENSION_CONTEXTS = {
     '.tmTheme': 'color_scheme_unit',
     '.php': 'phpunit',
-    '.sublime-project': 'sublime_text',
+    '.sublime-project': 'unit_testing',
 }
 
 
@@ -182,23 +130,23 @@ def _get_context(window):
             f_path, f_base = os.path.split(file_name)
             f_name, f_ext = os.path.splitext(f_base)
 
-            if f_base in _NAME:
-                return _NAME[f_base]
+            if f_base in _CONFIG_FILE_NAME_CONTEXTS:
+                return _CONFIG_FILE_NAME_CONTEXTS[f_base]
 
-            for k, v in _NAME_STARTS.items():
+            for k, v in _FILE_NAME_STARTS_WITH_CONTEXTS.items():
                 if f_name.startswith(k):
                     return v
 
-            if f_ext in _EXTENSIONS:
-                return _EXTENSIONS[f_ext]
+            if f_ext in _FILE_NAME_EXTENSION_CONTEXTS:
+                return _FILE_NAME_EXTENSION_CONTEXTS[f_ext]
 
         if view.match_selector(view.sel()[0].begin(), 'source.python'):
-            return 'sublime_text'
+            return 'unit_testing'
 
     return None
 
 
-def _debug_message(window, msg):
+def _log_debug(window, msg):
     view = window.active_view()
     if view and view.settings().get('test.debug', False):
         print('Test:', msg)
@@ -207,24 +155,19 @@ def _debug_message(window, msg):
 def _run_command(window, name, **kwargs):
     context = _get_context(window)
     if not context:
-        print('Test: context not known')
-
-        return
-
-    _debug_message(window, 'context: {}'.format(context))
+        return status_message('Test: could not run command: unknown context')
 
     try:
-        cmd = _COMMANDS[name][context]
-
-        if isinstance(cmd, tuple):
-            cmd, cmd_args = cmd
-        else:
-            cmd_args = {}
-
-        cmd_args.update(kwargs)
-
-        _debug_message(window, 'command: {} {}'.format(cmd, cmd_args))
-
-        window.run_command(cmd, cmd_args)
+        cmd = _DEFINITIONS[name][context]
     except KeyError:
-        print('Test: command not found')
+        cmd = '%s_test_%s' % (context, name)
+
+    if isinstance(cmd, tuple):
+        cmd, cmd_args = cmd
+    else:
+        cmd_args = {}
+
+    cmd_args.update(kwargs)
+
+    _log_debug(window, 'command: {} {}'.format(cmd, cmd_args))
+    window.run_command(cmd, cmd_args)
