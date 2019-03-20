@@ -46,16 +46,14 @@ Add your preferred key bindings via `Menu > Preferences > Key Bindings` or use t
 3. Press `Enter`
 
 ```json
-[
-    { "keys": ["ctrl+shift+a"], "command": "test_suite" },
-    { "keys": ["ctrl+shift+c"], "command": "test_cancel" },
-    { "keys": ["ctrl+shift+f"], "command": "test_file" },
-    { "keys": ["ctrl+shift+l"], "command": "test_last" },
-    { "keys": ["ctrl+shift+n"], "command": "test_nearest" },
-    { "keys": ["ctrl+shift+r"], "command": "test_results" }
-    { "keys": ["ctrl+shift+s"], "command": "test_switch" },
-    { "keys": ["ctrl+shift+v"], "command": "test_visit" }
-]
+{ "keys": ["ctrl+shift+a"], "command": "test_suite" },
+{ "keys": ["ctrl+shift+c"], "command": "test_cancel" },
+{ "keys": ["ctrl+shift+f"], "command": "test_file" },
+{ "keys": ["ctrl+shift+l"], "command": "test_last" },
+{ "keys": ["ctrl+shift+n"], "command": "test_nearest" },
+{ "keys": ["ctrl+shift+r"], "command": "test_results" }
+{ "keys": ["ctrl+shift+s"], "command": "test_switch" },
+{ "keys": ["ctrl+shift+v"], "command": "test_visit" },
 ```
 
 key | description
