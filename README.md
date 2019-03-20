@@ -67,8 +67,8 @@ key | description
 
 The following test runners are supported:
 
-Language  |  Package | Test Runners
--------- :|: ------- | ------------
+Language |  Package | Test Runners
+--------:|:-------- | ------------
 **PHP** | [PHPUnitKit](https://github.com/gerardroche/sublime-phpunit) | PHPUnit
  | [UnitTesting](https://github.com/randy3k/UnitTesting) | Sublime Text plugins
  | [ColorSchemeUnit](https://github.com/gerardroche/sublime-color-scheme-unit) | Sublime Text color schemes
