@@ -170,4 +170,5 @@ def _run_command(window, name, **kwargs):
     cmd_args.update(kwargs)
 
     _log_debug(window, 'command: {} {}'.format(cmd, cmd_args))
+
     window.run_command(cmd, cmd_args)
