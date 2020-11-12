@@ -2,7 +2,7 @@
 
 Leverage the power of Sublime Text test runners.
 
-[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=version)](https://github.com/gerardroche/sublime-test/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-test.svg?style=flat-square)](https://github.com/gerardroche/sublime-test/stargazers) [![Downloads](https://img.shields.io/packagecontrol/dt/Test.svg?style=flat-square)](https://packagecontrol.io/packages/Test) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
+[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Version](https://img.shields.io/github/tag/gerardroche/sublime-test.svg?style=flat-square&label=version)](https://github.com/gerardroche/sublime-test/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-test.svg?style=flat-square)](https://github.com/gerardroche/sublime-test/stargazers) [![Downloads](https://img.shields.io/packagecontrol/dt/Test.svg?style=flat-square)](https://packagecontrol.io/packages/Test)
 
 ## INSTALLATION
 
