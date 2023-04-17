@@ -14,15 +14,13 @@ Install Test via [Package Control](https://packagecontrol.io/packages/Test).
 
 ## Setup
 
-## Supported packages
-
 Install your preferred test runners via Package Control:
 
-| Language                      | Test Runners                      | Package
-| --------:                     |:------------                      | :------
-| **PHP**                       | PHPUnit, ParaTest, Pest, Artisan  | [PHPUnitKit](https://packagecontrol.io/packages/PHPUnitKit)
-| **Sublime Text plugin**       | UnitTesting                       | [UnitTesting](https://packagecontrol.io/packages/UnitTesting)
-| **Sublime Text color scheme** | ColorSchemeUnit                   | [ColorSchemeUnit](https://packagecontrol.io/packages/ColorSchemeUnit)
+| Language                                      | Test Runners                      | Package
+| --------:                                     |:------------                      | :------
+| **PHP**                                       | PHPUnit, ParaTest, Pest, Artisan  | [PHPUnitKit](https://packagecontrol.io/packages/PHPUnitKit)
+| **Sublime&nbsp;Text&nbsp;plugin**             | UnitTesting                       | [UnitTesting](https://packagecontrol.io/packages/UnitTesting)
+| **Sublime&nbsp;Text&nbsp;color&nbsp;scheme**  | ColorSchemeUnit                   | [ColorSchemeUnit](https://packagecontrol.io/packages/ColorSchemeUnit)
 
 Add your preferred key bindings via Menu &gt; Preferences &gt; Key Bindings:
 
