@@ -107,6 +107,7 @@ _CONFIG_FILE_NAME_CONTEXTS = {
     'unittesting.json': 'unit_testing',
     'phpunit.xml': 'phpunit',
     'phpunit.xml.dist': 'phpunit',
+    'phpunit.dist.xml': 'phpunit',
     'composer.json': 'phpunit',
 }
 
