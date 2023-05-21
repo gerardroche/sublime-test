@@ -22,7 +22,9 @@ Install your preferred test runners via Package Control:
 | **Sublime&nbsp;Text&nbsp;plugin**             | UnitTesting                       | [UnitTesting](https://packagecontrol.io/packages/UnitTesting)
 | **Sublime&nbsp;Text&nbsp;color&nbsp;scheme**  | ColorSchemeUnit                   | [ColorSchemeUnit](https://packagecontrol.io/packages/ColorSchemeUnit)
 
-Add your preferred key bindings via Menu &gt; Preferences &gt; Key Bindings:
+Add your preferred key bindings.
+
+**Menu → Preferences → Key Bindings**
 
 ```json
 [
