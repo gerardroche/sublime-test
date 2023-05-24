@@ -61,6 +61,6 @@ Key         | Description
 `F4`        | Jump to next failure
 `SHIFT+F4`  | Jump to previous failure
 
-## LICENSE
+## License
 
-Released under the [BSD 3-Clause License](LICENSE).
+Released under the [GPL-3.0-or-later License](LICENSE).
