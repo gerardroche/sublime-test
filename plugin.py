@@ -134,6 +134,7 @@ _FILE_NAME_STARTS_WITH_CONTEXTS = {
 
 
 _FILE_NAME_EXTENSION_CONTEXTS = {
+    '.sublime-color-scheme': 'color_scheme_unit',
     '.tmTheme': 'color_scheme_unit',
     '.php': 'phpunit',
     '.sublime-project': 'unit_testing',
