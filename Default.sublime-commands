@@ -1,12 +1,48 @@
 [
-    { "caption": "Test: Cancel", "command": "test_cancel" },
-    { "caption": "Test: File with Coverage", "command": "test_file", "args": {"coverage": true} },
-    { "caption": "Test: File", "command": "test_file" },
-    { "caption": "Test: Last", "command": "test_last" },
-    { "caption": "Test: Nearest", "command": "test_nearest" },
-    { "caption": "Test: Results", "command": "test_results" },
-    { "caption": "Test: Suite with Coverage", "command": "test_suite", "args": {"coverage": true} },
-    { "caption": "Test: Suite", "command": "test_suite" },
-    { "caption": "Test: Switch", "command": "test_switch" },
-    { "caption": "Test: Visit", "command": "test_visit" },
+    {
+        "caption": "Test: Cancel",
+        "command": "test_cancel"
+    },
+    {
+        "caption": "Test: File",
+        "command": "test_file"
+    },
+    {
+        "caption": "Test: File with Coverage",
+        "command": "test_file",
+        "args": {
+            "coverage": true
+        }
+    },
+    {
+        "caption": "Test: Last",
+        "command": "test_last"
+    },
+    {
+        "caption": "Test: Nearest",
+        "command": "test_nearest"
+    },
+    {
+        "caption": "Test: Results",
+        "command": "test_results"
+    },
+    {
+        "caption": "Test: Suite",
+        "command": "test_suite"
+    },
+    {
+        "caption": "Test: Suite with Coverage",
+        "command": "test_suite",
+        "args": {
+            "coverage": true
+        }
+    },
+    {
+        "caption": "Test: Switch",
+        "command": "test_switch"
+    },
+    {
+        "caption": "Test: Visit",
+        "command": "test_visit"
+    }
 ]
