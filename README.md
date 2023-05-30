@@ -1,8 +1,6 @@
 # Test
 
-<p>
-    <a href="https://packagecontrol.io/packages/Test"><img alt="Downloads" src="https://img.shields.io/packagecontrol/dt/Test.svg"></a>
-</p>
+![Package Control](https://img.shields.io/packagecontrol/dt/Test)
 
 Leverage the power of Sublime Text test runners.
 
@@ -16,11 +14,11 @@ Install [Test](https://packagecontrol.io/packages/Test) via Package Control.
 
 Install your preferred test runners via Package Control:
 
-| Language                                      | Test Runners                      | Package
-| --------:                                     |:------------                      | :------
-| **PHP**                                       | PHPUnit, ParaTest, Pest, Artisan  | [PHPUnitKit](https://packagecontrol.io/packages/PHPUnitKit)
-| **Sublime&nbsp;Text&nbsp;plugin**             | UnitTesting                       | [UnitTesting](https://packagecontrol.io/packages/UnitTesting)
-| **Sublime&nbsp;Text&nbsp;color&nbsp;scheme**  | ColorSchemeUnit                   | [ColorSchemeUnit](https://packagecontrol.io/packages/ColorSchemeUnit)
+| Language                                  | Test Runners                      | Package
+| --------:                                 |:------------                      | :------
+| PHP                                       | PHPUnit, ParaTest, Pest, Artisan  | [PHPUnitKit](https://packagecontrol.io/packages/PHPUnitKit)
+| Sublime&nbsp;Text&nbsp;plugin             | UnitTesting                       | [UnitTesting](https://packagecontrol.io/packages/UnitTesting)
+| Sublime&nbsp;Text&nbsp;color&nbsp;scheme  | ColorSchemeUnit                   | [ColorSchemeUnit](https://packagecontrol.io/packages/ColorSchemeUnit)
 
 Add your preferred key bindings.
 
