@@ -63,6 +63,28 @@ class TestVisitCommand(sublime_plugin.WindowCommand):
         _run_command(self.window, 'visit', **kwargs)
 
 
+class UnitTestingTestSuiteCommand(sublime_plugin.WindowCommand):
+
+    def run(self, **kwargs):
+        cmd_args = {"package": "$package_name", "coverage": False, "failfast": True}
+        cmd_args.update(kwargs)
+        self.window.run_command('unit_testing', cmd_args)
+
+
+class UnitTestingTestFileCommand(sublime_plugin.WindowCommand):
+
+    def run(self, **kwargs):
+        cmd_args = {"package": "$package_name", "pattern": "$file_name", "coverage": False, "failfast": True}
+        cmd_args.update(kwargs)
+        self.window.run_command('unit_testing', cmd_args)
+
+
+class UnitTestingTestResultsCommand(sublime_plugin.WindowCommand):
+
+    def run(self):
+        self.window.run_command('show_panel', {'panel': 'output.UnitTesting'})
+
+
 def _switch_file(window):
     view = window.active_view()
     if not view:
