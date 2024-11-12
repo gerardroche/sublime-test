@@ -66,7 +66,7 @@ class TestVisitCommand(sublime_plugin.WindowCommand):
 class UnitTestingTestSuiteCommand(sublime_plugin.WindowCommand):
 
     def run(self, **kwargs):
-        cmd_args = {"package": "$package_name", "coverage": False, "failfast": True}
+        cmd_args = {"package": "$package_name", "coverage": False}
         cmd_args.update(kwargs)
         self.window.run_command('unit_testing', cmd_args)
 
@@ -74,7 +74,7 @@ class UnitTestingTestSuiteCommand(sublime_plugin.WindowCommand):
 class UnitTestingTestFileCommand(sublime_plugin.WindowCommand):
 
     def run(self, **kwargs):
-        cmd_args = {"package": "$package_name", "pattern": "$file_name", "coverage": False, "failfast": True}
+        cmd_args = {"package": "$package_name", "pattern": "$file_name", "coverage": False}
         cmd_args.update(kwargs)
         self.window.run_command('unit_testing', cmd_args)
 
